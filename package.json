@@ -1,0 +1,20 @@
+{
+  "name": "badbank2.0-standalone",
+  "version": "1.0.0",
+  "description": "three-tiered app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/Jforstman"
+  },
+  "author": "jamie",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "4.4"
+  }
+}
