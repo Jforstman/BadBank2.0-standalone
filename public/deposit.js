@@ -1,16 +1,15 @@
 function Deposit(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');  
-  const ctx = React.useContext(UserContext);
 
   return (
     <Card
-      bgcolor="danger"
+      bgcolor="warning"
       header="Deposit"
       status={status}
       body={show ? 
         <DepositForm setShow={setShow} setStatus={setStatus}/> :
-        <DepositMsg setShow={setShow}/>}
+        <DepositMsg setShow={setShow} setStatus={setStatus}/>}
     />
   )
 }
@@ -19,8 +18,11 @@ function DepositMsg(props){
   return (<>
     <h5>Success</h5>
     <button type="submit" 
-      className="btn btn-secondary" 
-      onClick={() => props.setShow(true)}>
+      className="btn btn-light" 
+      onClick={() => {
+          props.setShow(true);
+          props.setStatus('');
+      }}>
         Deposit again
     </button>
   </>);
@@ -29,20 +31,21 @@ function DepositMsg(props){
 function DepositForm(props){
   const [email, setEmail]   = React.useState('');
   const [amount, setAmount] = React.useState('');
-  const ctx = React.useContext(UserContext);  
 
   function handle(){
-    console.log(email,amount);
-    const user = ctx.users.find((user) => user.email == email);
-    if (!user) {
-      props.setStatus('fail!');
-      return;      
-    }
-
-    user.balance = user.balance + Number(amount);
-    console.log(user);
-    props.setStatus('');      
-    props.setShow(false);
+    fetch(`/account/update/${email}/${amount}`)
+    .then(response => response.text())
+    .then(text => {
+        try {
+            const data = JSON.parse(text);
+            props.setStatus(JSON.stringify(data.value));
+            props.setShow(false);
+            console.log('JSON:', data);
+        } catch(err) {
+            props.setStatus('Deposit failed')
+            console.log('err:', text);
+        }
+    });
   }
 
   return(<>

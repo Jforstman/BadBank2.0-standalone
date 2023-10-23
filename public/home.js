@@ -1,12 +1,11 @@
 function Home(){
   return (
     <Card
-      bgcolor="danger"
-      txtcolor="white"
-      header="Welcome to MyBank!"
-      title="Click Login above to log into your account"
+      txtcolor="black"
+      header="BadBank Landing Module"
+      title="Welcome to the bank"
       text="You can move around using the navigation bar."
-      body={(<img src="bank.png" className="img-fluid" alt="Responsive"/>)}
+      body={(<img src="bank.png" className="img-fluid" alt="Responsive image"/>)}
     />
   );  
 }
