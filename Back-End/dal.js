@@ -24,7 +24,7 @@ function create(name, email, password){
 // find user account
 function find(email){
     return new Promise((resolve, reject) => {    
-        const customers = db
+        const users = db
             .collection('users')
             .find({email: email})
             .toArray(function(err, docs) {
@@ -36,7 +36,7 @@ function find(email){
 // find user account
 function findOne(email){
     return new Promise((resolve, reject) => {    
-        const customers = db
+        const users = db
             .collection('users')
             .findOne({email: email})
             .then((doc) => resolve(doc))
@@ -47,7 +47,7 @@ function findOne(email){
 // update - deposit/withdraw amount
 function update(email, amount){
     return new Promise((resolve, reject) => {    
-        const customers = db
+        const users = db
             .collection('users')            
             .findOneAndUpdate(
                 {email: email},
@@ -65,7 +65,7 @@ function update(email, amount){
 // all users
 function all(){
     return new Promise((resolve, reject) => {    
-        const customers = db
+        const users = db
             .collection('users')
             .find({})
             .toArray(function(err, docs) {

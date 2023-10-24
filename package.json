@@ -4,7 +4,8 @@
   "description": "three-tiered app",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "http-server"
   },
   "repository": {
     "type": "git",
