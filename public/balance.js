@@ -4,8 +4,8 @@ function Balance(){
 
   return (
     <Card
-      bgcolor="info"
-      header="Balance"
+      bgcolor="danger"
+      header={<h3>Balance</h3>}
       status={status}
       body={show ?
         <BalanceForm setShow={setShow} setStatus={setStatus}/> :

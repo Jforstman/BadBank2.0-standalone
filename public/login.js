@@ -4,8 +4,8 @@ function Login(){
 
   return (
     <Card
-      bgcolor="secondary"
-      header="Login"
+      bgcolor="danger"
+      header= {<h3>Login</h3>}
       status={status}
       body={show ? 
         <LoginForm setShow={setShow} setStatus={setStatus}/> :

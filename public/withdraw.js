@@ -4,8 +4,8 @@ function Withdraw(){
 
   return (
     <Card
-      bgcolor="success"
-      header="Withdraw"
+      bgcolor="danger"
+      header={<h3>Withdrawal</h3>}
       status={status}
       body={show ? 
         <WithdrawForm setShow={setShow} setStatus={setStatus}/> :

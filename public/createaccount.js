@@ -4,8 +4,8 @@ function CreateAccount(){
 
   return (
     <Card
-      bgcolor="primary"
-      header="Create Account"
+      bgcolor="danger"
+      header={<h3>Create Account</h3>}
       status={status}
       body={show ? 
         <CreateForm setShow={setShow}/> : 

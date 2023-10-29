@@ -4,8 +4,8 @@ function Deposit(){
 
   return (
     <Card
-      bgcolor="warning"
-      header="Deposit"
+      bgcolor="danger"
+      header={<h3>Deposit</h3>}
       status={status}
       body={show ? 
         <DepositForm setShow={setShow} setStatus={setStatus}/> :
