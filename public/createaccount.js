@@ -2,6 +2,7 @@ function CreateAccount(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');
 
+  
   return (
     <Card
       bgcolor="danger"
@@ -27,9 +28,25 @@ function CreateForm(props){
   const [name, setName]         = React.useState('');
   const [email, setEmail]       = React.useState('');
   const [password, setPassword] = React.useState('');
+  const ctx = React.useContext(UserContext);
+
+  /*function validate(field, label){
+      if (!field) {
+        setStatus('Error: ' + label);
+        setTimeout(() => setStatus(''),3000);
+        return false;
+      }
+      if (password.length < 8) {
+        setStatus('Password must be at least 8 characters');
+        setTimeout(() => setStatus(''), 5000);
+        return false;
+      }
+      return true;
+  }*/
 
   function handle(){
     console.log(name,email,password);
+    ctx.users.push({name, email, password})
     const url = `/account/create/${name}/${email}/${password}`;
     (async () => {
         var res  = await fetch(url);

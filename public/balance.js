@@ -1,6 +1,7 @@
 function Balance(){
   const [show, setShow]     = React.useState(true);
-  const [status, setStatus] = React.useState('');  
+  const [status, setStatus] = React.useState('');
+  const ctx = React.useContext(UserContext)  
 
   return (
     <Card
@@ -34,6 +35,7 @@ function BalanceForm(props){
   const [balance, setBalance] = React.useState('');  
 
   function handle(){
+    //ctx.users.map({email, balance})
     fetch(`/account/findOne/${email}`)
     .then(response => response.text())
     .then(text => {

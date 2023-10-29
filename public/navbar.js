@@ -1,4 +1,11 @@
 function NavBar(){
+  // element that should show the currently logged in user's email address
+  //const userNameDisplay = document.getElementById('name-display');
+  //let currentUserEmail = ''; // variable to store the current user's email
+  //function updateCurrentUser(email) {
+    //userNameDisplay.innerHTML = email;
+    //currentUserEmail = email;
+  //}
   return(
     <>
     <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
@@ -28,7 +35,8 @@ function NavBar(){
           </li>
           <li className="nav-item">
             <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="All user account data" href="#/alldata/">All Data</a>
-          </li>          
+          </li> 
+          <li className="name-display"></li>         
         </ul>
       </div>
     </nav>
