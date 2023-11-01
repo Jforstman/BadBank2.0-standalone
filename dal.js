@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const url         = 'mongodb://localhost:27017'
+const url         = 'mongodb+srv://justlovinglife73:Sjgv42h48qyFLO9Q@badbank.clghfna.mongodb.net/'
 let db            = null;
  
 // connect to mongo
@@ -24,7 +24,7 @@ function create(name, email, password){
 // find user account
 function find(email){
     return new Promise((resolve, reject) => {    
-        const users = db
+        const customers = db
             .collection('users')
             .find({email: email})
             .toArray(function(err, docs) {
@@ -36,7 +36,7 @@ function find(email){
 // find user account
 function findOne(email){
     return new Promise((resolve, reject) => {    
-        const users = db
+        const customers = db
             .collection('users')
             .findOne({email: email})
             .then((doc) => resolve(doc))
@@ -47,7 +47,7 @@ function findOne(email){
 // update - deposit/withdraw amount
 function update(email, amount){
     return new Promise((resolve, reject) => {    
-        const users = db
+        const customers = db
             .collection('users')            
             .findOneAndUpdate(
                 {email: email},
@@ -65,7 +65,7 @@ function update(email, amount){
 // all users
 function all(){
     return new Promise((resolve, reject) => {    
-        const users = db
+        const customers = db
             .collection('users')
             .find({})
             .toArray(function(err, docs) {
@@ -73,6 +73,40 @@ function all(){
         });    
     })
 }
+function updateAll() {
+    return new Promise((resolve, reject) => {
+        const customers = db.collection('users')
+        .updateAll(
+            {},
+            {$set: {message: "none"}},
+            function(err, docs) {
+                err? reject(err):resolve(docs);
+            }
+        )
+    })
+}
+
+// Transfer
+
+function transfer(email, amount, message) {
+    // console.log('inside dal...amount:', amount)
+    const amountNum = Number(amount);
+    return new Promise((resolve, reject) => {
+        const customers = db.collection('users')
+            .findOneAndUpdate(
+                { email: email },
+                { $inc: {balance: amountNum} },
+                { $set: {message: message} },
+                {upsert:false,
+                    multi:false},
+                { returnOriginal: false },
+                function (err, documents) {
+                    err ? reject(err) : resolve(documents);
+                }
+            );
+    });
+}
+
+module.exports = {create, find, findOne, update, all, transfer, updateAll};
 
 
-module.exports = {create, findOne, find, update, all};

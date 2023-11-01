@@ -1,4 +1,9 @@
 function Home() {
+  const ctx = React.useContext(UserContext);
+  console.log(ctx);
+
+  React.useEffect(() => {
+    },[])
   return(
     <Card 
       bgcolor="danger"

@@ -1,71 +1,76 @@
 function Balance(){
-  const [show, setShow]     = React.useState(true);
-  const [status, setStatus] = React.useState('');
-  const ctx = React.useContext(UserContext)  
+  const ctx = React.useContext(UserContext);
+  const [show, setShow] = React.useState(true)
+  const [status, setStatus] = React.useState('')
+  const [balance, setBalance] = React.useState('')
+  const[loaded, setLoaded] = React.useState(false);
+  
+  React.useEffect(() => {
 
-  return (
-    <Card
-      bgcolor="danger"
-      header={<h3>Balance</h3>}
-      status={status}
-      body={show ?
-        <BalanceForm setShow={setShow} setStatus={setStatus}/> :
-        <BalanceMsg setShow={setShow} setStatus={setStatus}/>}
-    />
-  )
 
-}
-
-function BalanceMsg(props){
-  return(<>
-    <h5>Success</h5>
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={() => {
-        props.setShow(true);
-        props.setStatus('');
-      }}>
-        Check balance again
-    </button>
-  </>);
-}
-
-function BalanceForm(props){
-  const [email, setEmail]   = React.useState('');
-  const [balance, setBalance] = React.useState('');  
-
-  function handle(){
-    //ctx.users.map({email, balance})
-    fetch(`/account/findOne/${email}`)
+   // Get Logged in user from MongoDB
+    fetch(`/account/findOne/${ctx.email}`)
     .then(response => response.text())
     .then(text => {
-        try {
-            const data = JSON.parse(text);
-            props.setStatus(text);
-            props.setShow(false);
-            setBalance(user.balance);
-            console.log('JSON:', data);
-        } catch(err) {
-            props.setStatus(text)
-            console.log('err:', text);
+      try {
+        const data = JSON.parse(text)
+        setBalance(data.balance)
+        if(data.message){
+        console.log(data.message)
         }
-    });
-  }
+        console.log('JSON:', JSON.stringify(data))
+      } catch (err) {
+        console.log('err:', text)
+      }
+    })
+    setLoaded(true);
+  },[])
+  return (
+  <div class="card text-white bg-danger mb-3" style="max-width: 36rem;">
+  <div class="card-header">Account Balance</div>
+  <div class="card-body">
+    Email address<br/>
+  <input type="input" class="form-control" id="email" placeholder="Enter email" /><br/>
+  <button type="submit" id="submit" class="btn btn-light" onClick={balance}>Show Balance</button>
+  <div id="balanceStatus"></div>
+  </div>
+</div>
 
-  return (<>
+)};
 
-    Email<br/>
-    <input type="input" 
-      className="form-control" 
-      placeholder="Enter email" 
-      value={email} 
-      onChange={e => setEmail(e.currentTarget.value)}/><br/>
+// function BalanceMsg(){
+//   return(<>
+//     <h5>Success</h5>
+//     <button type="submit" 
+//       className="btn btn-light" 
+//       onClick={() => {
+//         setShow(true);
+//         setStatus('');
+//       }}>
+//         Check balance again
+//     </button>
+//   </>);
+// }
 
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={handle}>
-        Check Balance
-    </button>
+// function BalanceForm(){
+//   const [email, setEmail]   = React.useState('');
+//   const [balance, setBalance] = React.useState('');  
+//   const ctx = React.useContext(UserContext);
+//   function handle(){
+//     fetch(`/account/findOne/${ctx.email}`)
+//     .then(response => response.text())
+//     .then(text => {
+//         try {
+//         const data = JSON.parse(text)
+//         setBalance(data.balance)
+//         if(data?.message){
+//         console.log(data.message)
+//         }
+//         console.log('JSON:', JSON.stringify(data))
+//       } catch (err) {
+//         console.log('err:', text)
+//         }
+//     });
+//   }
 
-  </>);
-}
+  
