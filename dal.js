@@ -1,12 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
-const url         = 'mongodb+srv://justlovinglife73:Sjgv42h48qyFLO9Q@badbank.clghfna.mongodb.net/'
+const url         = 'mongodb://localhost:27017';
 let db            = null;
  
 // connect to mongo
 MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     console.log("Connected successfully to db server");
 
-    // connect to BadBank database
+    // connect to myproject database
     db = client.db('BadBank');
 });
 
@@ -73,40 +73,6 @@ function all(){
         });    
     })
 }
-function updateAll() {
-    return new Promise((resolve, reject) => {
-        const customers = db.collection('users')
-        .updateAll(
-            {},
-            {$set: {message: "none"}},
-            function(err, docs) {
-                err? reject(err):resolve(docs);
-            }
-        )
-    })
-}
-
-// Transfer
-
-function transfer(email, amount, message) {
-    // console.log('inside dal...amount:', amount)
-    const amountNum = Number(amount);
-    return new Promise((resolve, reject) => {
-        const customers = db.collection('users')
-            .findOneAndUpdate(
-                { email: email },
-                { $inc: {balance: amountNum} },
-                { $set: {message: message} },
-                {upsert:false,
-                    multi:false},
-                { returnOriginal: false },
-                function (err, documents) {
-                    err ? reject(err) : resolve(documents);
-                }
-            );
-    });
-}
-
-module.exports = {create, find, findOne, update, all, transfer, updateAll};
 
 
+module.exports = {create, findOne, find, update, all};
