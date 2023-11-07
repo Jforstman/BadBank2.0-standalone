@@ -1,12 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
+//const url = 'mongodb://localhost:27017';
  
 // connect to mongo
 MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
   console.log("Connected successfully to server");
 
     // database Name
-    const dbName = 'myproject';
+    const dbName = 'BadBank';
     const db = client.db(dbName);
 
     // new user
@@ -14,14 +15,14 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     var email = name + '@mit.edu';
 
     // insert into customer table
-    var collection = db.collection('customers');
+    var collection = db.collection('users');
     var doc = {name, email};
     collection.insertOne(doc, {w:1}, function(err, result) {
         console.log('Document insert');
     });
 
     var customers = db
-        .collection('customers')
+        .collection('users')
         .find()
         .toArray(function(err, docs) {
             console.log('Collection:',docs);

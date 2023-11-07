@@ -2,7 +2,7 @@ var express = require('express');
 var app     = express();
 var cors    = require('cors');
 var dal     = require('./dal.js');
-const e = require('express');
+//const e = require('express');
 
 // used to serve static files from public directory
 app.use(express.static('public'));
@@ -97,6 +97,31 @@ app.get('/account/all', function (req, res) {
             res.send(docs);
     });
 });
+
+
+
+// // update - deposit/withdraw amount
+// app.get('/account/update/:email/:amount/:message', function (req, res) {
+//     let amount = Number(req.params.amount);
+//     console.log("inside index...amount: ", amount)
+
+//     dal.transfer(req.params.email, amount, req.params.message)
+//         .then((response) => {
+//             console.log(response);
+//             res.send(response);
+//     });    
+// }); 
+
+// get balance
+// app.get('/account/balance/:name/:email/:amount', function(req, res) {
+    
+//     dal.deposit(req.params.name, req.params.email, req.params.amount)
+//         .then((user) => {
+//         console.log(user);
+//         res.send(user);
+//         });
+// });
+
 
 var port = 3000;
 app.listen(port);

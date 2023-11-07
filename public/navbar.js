@@ -1,34 +1,45 @@
 function NavBar(){
+  // element that should show the currently logged in user's email address
+  //const userNameDisplay = document.getElementById('name-display');
+  //let currentUserEmail = ''; // variable to store the current user's email
+  //function updateCurrentUser(email) {
+    //userNameDisplay.innerHTML = email;
+    //currentUserEmail = email;
+  //}
   return(
-
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">BadBank</a>
+    <>
+    <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
+      <a className="navbar-brand">MyBank</a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link" href="#/CreateAccount/">Create Account</a>
+        <ul className="nav nav-tabs">
+          <li className="nav-item active">
+            <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="Home / Landing Page" href="#">Home</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/login/">Login</a>
+            <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="Login to your account!" href="#/login/">Login</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/deposit/">Deposit</a>
+            <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="Create a new account here!" href="#/createaccount/">Create Account</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/withdraw/">Withdraw</a>
+            <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="Make a deposit to your account" href="#/deposit/">Deposit</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/balance/">Balance</a>
+            <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="Make a withdrawal from your account" href="#/withdraw/">Withdraw</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/alldata/">AllData</a>
-          </li>          
+            <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="Your account balance" href="#/balance/">Balance</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link text-white" data-toggle="tooltip" data-placement="bottom" title="All user account data" href="#/alldata/">All Data</a>
+          </li> 
+          <li className="name-display"></li>         
         </ul>
       </div>
     </nav>
-
+    </>
   );
 }
