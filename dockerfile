@@ -1,8 +1,20 @@
-FROM node:slim
+FROM node:14-slim
 
-WORKDIR /app
+# Step 4.1 - Add container working directory
+WORKDIR /
 
-# copy code, install npm dependencies
-COPY index.js /app/index.js
-COPY package.json /app/package.json
+# Step 4.2 - Copy npm dependencies
+COPY package.json ./
+
+# Step 4.3 - Install dependencies
 RUN npm install
+
+# Copy app source code
+
+COPY . .
+
+#Expose port and start application
+
+EXPOSE 8080
+
+CMD ["node", "index.js"]

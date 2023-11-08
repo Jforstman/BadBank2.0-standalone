@@ -1,0 +1,13 @@
+FROM node:14-slim
+
+WORKDIR /public
+
+COPY index.html /public/
+
+RUN npm install
+
+COPY . .
+
+#Expose port and start the application
+
+EXPOSE 3000
