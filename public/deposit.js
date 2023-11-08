@@ -27,11 +27,11 @@ function Deposit() {
   
   return (
     <>
-    <div className="hi-msg">Welcome</div>
+    <div className="hi-msg"></div>
     <Card
-      txtcolor=" "
-      bgcolor=" "
-      header="Deposit"
+      txtcolor="white "
+      bgcolor="danger "
+      header={<h3>Deposit</h3>}
       status={status}
       body={
         show ? (
