@@ -5,7 +5,7 @@ Description/Motivation: This project was completed for the MIT xPro certificatio
 
 
 
-Installation Guidelines: Clear instructions on how to get your project up and running --TBD (e.g., git clone, git pull, npm init).
+Installation Guidelines: clone the repository, then "npm install" to install the dependencies.  To run the app, run "node index.js" from the root directory.
 
 
 Screenshots: Screenshots or a GIF of your project in action.--TBD
@@ -13,7 +13,7 @@ Screenshots: Screenshots or a GIF of your project in action.--TBD
 
 Technology used: 
 Client: React standalone with Bootstrap styling elements and Firebase authentication.
-Server: Express Server with Firebase authentication hosted by Google Firebase.
+Server: Express Server with local storage used for authentication.
 Database: MongoDB containerized on Docker. 
 
 
